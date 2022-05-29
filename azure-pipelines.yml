@@ -10,8 +10,12 @@ pool:
   vmImage: ubuntu-latest
 
 variables:
-  buildConfiguration: 'Release'
+  - group: challenge-staging-lib-v1
+  - name: buildConfiguration
+    value: 'Release'
 
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+- powershell: | 
+  Write-Host "ver variable:$(Test_var)"
